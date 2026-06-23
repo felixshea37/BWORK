@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bounties — BaseWorker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav">
+    <div class="nav-left">
+      <a class="brand" href="index.html">
+        <svg class="logo-mark" viewBox="0 0 32 32" fill="none">
+          <path d="M16 2L29 9.5V22.5L16 30L3 22.5V9.5L16 2Z" fill="#3b5bfd"/>
+          <path d="M16 2L29 9.5L16 17L3 9.5L16 2Z" fill="#6e87ff"/>
+        </svg>
+        BaseWorker
+      </a>
+      <ul class="nav-links">
+        <li><a href="ideas.html">Ideas</a></li>
+        <li><a href="bounties.html" class="active">Bounties</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="how-it-works.html">How It Works</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+    <div class="nav-right">
+      <span class="icon-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+      </span>
+      <a class="btn btn-outline" href="#">Log in</a>
+      <a class="btn btn-primary" href="#">Sign up</a>
+    </div>
+  </div>
+</header>
+
+<!-- ================= PAGE HEADER ================= -->
+<section class="page-header">
+  <div class="wrap">
+    <div class="page-header-row">
+      <div>
+        <div class="crumb"><a href="index.html">Home</a> / Bounties</div>
+        <h1>Bounties</h1>
+        <p>Post tasks, set rewards, and find the right people to get it done. Browse open work from across the Base community.</p>
+      </div>
+      <button class="btn btn-primary-lg fab-btn" id="openBountyModal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>
+        Post a Bounty
+      </button>
+    </div>
+    <div class="page-stats">
+      <div class="page-stat"><span class="num" id="statTotal">—</span><span class="label">Bounties Posted</span></div>
+      <div class="page-stat"><span class="num" id="statOpen">—</span><span class="label">Open Now</span></div>
+      <div class="page-stat"><span class="num" id="statRewards">—</span><span class="label">Total Rewards</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BODY ================= -->
+<section class="page-body">
+  <div class="wrap">
+    <div class="toolbar">
+      <div class="tabs" id="filterTabs">
+        <button class="tab-pill active" data-filter="all">All</button>
+        <button class="tab-pill" data-filter="Open">Open</button>
+        <button class="tab-pill" data-filter="In Progress">In Progress</button>
+        <button class="tab-pill" data-filter="Completed">Completed</button>
+      </div>
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input type="text" id="searchInput" placeholder="Search bounties...">
+      </div>
+    </div>
+
+    <div class="card-list" id="bountyList"></div>
+    <div class="empty-state" id="emptyState" style="display:none;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <p>No bounties match your search. Try a different keyword or filter.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MODAL: NEW BOUNTY ================= -->
+<div class="modal-overlay" id="bountyModal">
+  <div class="modal-panel">
+    <div class="modal-head">
+      <h3>Post a Bounty</h3>
+      <button class="modal-close" id="closeBountyModal">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <form id="bountyForm">
+      <div class="form-field">
+        <label for="bountyTitle">Title</label>
+        <input type="text" id="bountyTitle" placeholder="e.g. Build a Farcaster frame for bounty alerts" required>
+      </div>
+      <div class="form-field">
+        <label for="bountyDesc">Description</label>
+        <textarea id="bountyDesc" placeholder="Describe the task, deliverables, and any requirements..." required></textarea>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <label for="bountyReward">Reward (USDC)</label>
+          <input type="number" id="bountyReward" placeholder="500" min="1" required>
+        </div>
+        <div class="form-field">
+          <label for="bountyDeadline">Deadline</label>
+          <input type="text" id="bountyDeadline" placeholder="e.g. 7 days">
+        </div>
+      </div>
+      <div class="form-field">
+        <label for="bountyPoster">Posted by</label>
+        <input type="text" id="bountyPoster" placeholder="Anonymous Sponsor">
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn btn-outline-lg" id="cancelBountyBtn">Cancel</button>
+        <button type="submit" class="btn btn-primary-lg">Post Bounty</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="toast" id="toast">Bounty posted!</div>
+
+<footer>
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="index.html">
+        <svg class="logo-mark" viewBox="0 0 32 32" fill="none">
+          <path d="M16 2L29 9.5V22.5L16 30L3 22.5V9.5L16 2Z" fill="#fff"/>
+          <path d="M16 2L29 9.5L16 17L3 9.5L16 2Z" fill="#9fb0ff"/>
+        </svg>
+        BaseWorker
+      </a>
+      <p>The community hub for ideas, bounties, and projects on Base.</p>
+      <div class="footer-socials">
+        <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7 8 8 12h-6.3l-5-7.3L6 22H3l7.5-8.6L3 2h6.4l4.5 6.6L18.9 2z"/></svg></a>
+        <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 6.5a9 9 0 01-2.6.8 4.5 4.5 0 002-2.5 9 9 0 01-2.9 1.1A4.5 4.5 0 0010 9v1A10.7 10.7 0 013 7.5s-3.5 7.5 4.5 10.5a11 11 0 01-6 1.5C9.5 23 17 19 17 10.5v-.7A6.4 6.4 0 0020 6.5z"/></svg></a>
+        <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Platform</h5>
+      <ul>
+        <li><a href="ideas.html">Ideas</a></li>
+        <li><a href="bounties.html">Bounties</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="index.html">Explore</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Resources</h5>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="how-it-works.html">How It Works</a></li>
+        <li><a href="how-it-works.html">Guidelines</a></li>
+        <li><a href="how-it-works.html">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Community</h5>
+      <ul>
+        <li><a href="#">Farcaster</a></li>
+        <li><a href="#">X (Twitter)</a></li>
+        <li><a href="#">Discord</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Legal</h5>
+      <ul>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="footer-sub">
+      <h5>Stay updated</h5>
+      <p>Get the latest updates and opportunities delivered to your inbox.</p>
+      <div class="sub-form">
+        <input type="email" placeholder="Enter your email" />
+        <button>Subscribe</button>
+      </div>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>© 2025 BaseWorker. All rights reserved.</span>
+    <span class="built">Built on
+      <span class="base-dot"><svg viewBox="0 0 24 24" fill="none"><path d="M7 12c0-3 2-5 5-5s5 2 5 5-2 5-5 5-5-2-5-5z" fill="white"/></svg></span>
+      BASE
+    </span>
+  </div>
+</footer>
+
+<script>
+const STORAGE_KEY = 'bw_bounties';
+
+const seedBounties = [
+  {id:'b1', title:'Build a Farcaster frame for bounty alerts', desc:'Create a Farcaster frame that lets users subscribe to bounty categories and get notified when new ones drop above a reward threshold.', reward:750, deadline:'5 days', poster:'baseworker_team', status:'Open', applicants:12, time:'1d ago'},
+  {id:'b2', title:'Design system audit for the Ideas page', desc:'Review spacing, type scale, and color contrast across the Ideas board and propose fixes that match WCAG AA.', reward:300, deadline:'3 days', poster:'lina.base', status:'In Progress', applicants:6, time:'2d ago'},
+  {id:'b3', title:'Write integration docs for the bounty escrow contract', desc:'Document the escrow contract interface, milestone split logic, and provide code samples for posting and releasing funds.', reward:450, deadline:'7 days', poster:'ren_finance', status:'Open', applicants:4, time:'2d ago'},
+  {id:'b4', title:'Build a leaderboard widget for top builders', desc:'A small embeddable widget ranking builders by bounties completed and ideas shared, sortable by week/month/all-time.', reward:600, deadline:'10 days', poster:'devyn.eth', status:'Open', applicants:9, time:'3d ago'},
+  {id:'b5', title:'Migrate landing page illustrations to Lottie', desc:'Convert the static hero illustration into a lightweight Lottie animation with subtle idle motion, under 80kb.', reward:280, deadline:'4 days', poster:'maya_codes', status:'Completed', applicants:15, time:'1w ago'},
+  {id:'b6', title:'Set up Supabase real-time for the chat module', desc:'Wire up Supabase real-time channels for the direct-message system, including presence indicators and typing states.', reward:900, deadline:'14 days', poster:'0xKarl', status:'Open', applicants:3, time:'1w ago'},
+];
+
+function loadBounties(){
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if(!raw){
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(seedBounties));
+    return seedBounties.slice();
+  }
+  try{ return JSON.parse(raw); }catch(e){ return seedBounties.slice(); }
+}
+function saveBounties(list){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+}
+
+const statusColor = {Open:'pill-green', 'In Progress':'pill-amber', Completed:'pill-gray'};
+
+let bounties = loadBounties();
+let currentFilter = 'all';
+let currentSearch = '';
+
+function render(){
+  const listEl = document.getElementById('bountyList');
+  const emptyEl = document.getElementById('emptyState');
+
+  let filtered = bounties.filter(b => currentFilter === 'all' || b.status === currentFilter);
+  if(currentSearch.trim()){
+    const q = currentSearch.trim().toLowerCase();
+    filtered = filtered.filter(b => b.title.toLowerCase().includes(q) || b.desc.toLowerCase().includes(q));
+  }
+
+  listEl.innerHTML = '';
+  if(filtered.length === 0){
+    emptyEl.style.display = 'block';
+  } else {
+    emptyEl.style.display = 'none';
+    filtered.forEach(b => {
+      const card = document.createElement('div');
+      card.className = 'item-card';
+      card.innerHTML = `
+        <div class="reward-tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9 9.5c0-1.4 1.3-2.5 3-2.5s3 1 3 2.3-1.3 1.9-3 2.2-3 .9-3 2.2 1.3 2.3 3 2.3 3-1.1 3-2.5"/></svg>
+          ${b.reward.toLocaleString()} USDC
+        </div>
+        <div class="item-main">
+          <div class="item-top">
+            <span class="pill ${statusColor[b.status]||'pill-gray'}">${b.status}</span>
+          </div>
+          <h3 class="item-title">${escapeHtml(b.title)}</h3>
+          <p class="item-desc">${escapeHtml(b.desc)}</p>
+          <div class="item-meta">
+            <span>${escapeHtml(b.poster)}</span>
+            <span>·</span>
+            <span>${b.time}</span>
+            <span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+              ${escapeHtml(b.deadline || 'No deadline')}
+            </span>
+            <span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.3 2.9-6 6.5-6s6.5 2.7 6.5 6"/></svg>
+              ${b.applicants} applicants
+            </span>
+          </div>
+        </div>`;
+      listEl.appendChild(card);
+    });
+  }
+
+  document.getElementById('statTotal').textContent = bounties.length.toLocaleString() + '+';
+  document.getElementById('statOpen').textContent = bounties.filter(b=>b.status==='Open').length;
+  document.getElementById('statRewards').textContent = '$' + bounties.reduce((s,b)=>s+Number(b.reward),0).toLocaleString();
+}
+
+function escapeHtml(str){
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+document.getElementById('filterTabs').addEventListener('click', (e) => {
+  const btn = e.target.closest('.tab-pill');
+  if(!btn) return;
+  document.querySelectorAll('#filterTabs .tab-pill').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentFilter = btn.dataset.filter;
+  render();
+});
+
+document.getElementById('searchInput').addEventListener('input', (e) => {
+  currentSearch = e.target.value;
+  render();
+});
+
+const bountyModal = document.getElementById('bountyModal');
+document.getElementById('openBountyModal').addEventListener('click', () => bountyModal.classList.add('open'));
+document.getElementById('closeBountyModal').addEventListener('click', () => bountyModal.classList.remove('open'));
+document.getElementById('cancelBountyBtn').addEventListener('click', () => bountyModal.classList.remove('open'));
+bountyModal.addEventListener('click', (e) => { if(e.target === bountyModal) bountyModal.classList.remove('open'); });
+
+document.getElementById('bountyForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const title = document.getElementById('bountyTitle').value.trim();
+  const desc = document.getElementById('bountyDesc').value.trim();
+  const reward = Number(document.getElementById('bountyReward').value);
+  const deadline = document.getElementById('bountyDeadline').value.trim();
+  const poster = document.getElementById('bountyPoster').value.trim() || 'Anonymous Sponsor';
+  if(!title || !desc || !reward) return;
+
+  const newBounty = {
+    id: 'bounty_' + Date.now(),
+    title, desc, reward, deadline, poster,
+    status: 'Open', applicants: 0, time: 'Just now'
+  };
+  bounties.unshift(newBounty);
+  saveBounties(bounties);
+
+  document.getElementById('bountyForm').reset();
+  bountyModal.classList.remove('open');
+  showToast('Bounty posted!');
+  currentFilter = 'all';
+  document.querySelectorAll('#filterTabs .tab-pill').forEach(b => b.classList.remove('active'));
+  document.querySelector('#filterTabs .tab-pill[data-filter="all"]').classList.add('active');
+  render();
+});
+
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+render();
+</script>
+</body>
+</html>

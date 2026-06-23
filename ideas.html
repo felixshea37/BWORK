@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ideas — BaseWorker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav">
+    <div class="nav-left">
+      <a class="brand" href="index.html">
+        <svg class="logo-mark" viewBox="0 0 32 32" fill="none">
+          <path d="M16 2L29 9.5V22.5L16 30L3 22.5V9.5L16 2Z" fill="#3b5bfd"/>
+          <path d="M16 2L29 9.5L16 17L3 9.5L16 2Z" fill="#6e87ff"/>
+        </svg>
+        BaseWorker
+      </a>
+      <ul class="nav-links">
+        <li><a href="ideas.html" class="active">Ideas</a></li>
+        <li><a href="bounties.html">Bounties</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="how-it-works.html">How It Works</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+    <div class="nav-right">
+      <span class="icon-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+      </span>
+      <a class="btn btn-outline" href="#">Log in</a>
+      <a class="btn btn-primary" href="#">Sign up</a>
+    </div>
+  </div>
+</header>
+
+<!-- ================= PAGE HEADER ================= -->
+<section class="page-header">
+  <div class="wrap">
+    <div class="page-header-row">
+      <div>
+        <div class="crumb"><a href="index.html">Home</a> / Ideas</div>
+        <h1>Ideas</h1>
+        <p>Share your concept, get feedback from the community, and find people who want to build it with you.</p>
+      </div>
+      <button class="btn btn-primary-lg fab-btn" id="openIdeaModal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>
+        Share an Idea
+      </button>
+    </div>
+    <div class="page-stats">
+      <div class="page-stat"><span class="num" id="statTotal">—</span><span class="label">Ideas Shared</span></div>
+      <div class="page-stat"><span class="num" id="statVotes">—</span><span class="label">Total Votes</span></div>
+      <div class="page-stat"><span class="num" id="statComments">—</span><span class="label">Comments</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BODY ================= -->
+<section class="page-body">
+  <div class="wrap">
+    <div class="toolbar">
+      <div class="tabs" id="filterTabs">
+        <button class="tab-pill active" data-filter="all">All</button>
+        <button class="tab-pill" data-filter="DeFi">DeFi</button>
+        <button class="tab-pill" data-filter="GameFi">GameFi</button>
+        <button class="tab-pill" data-filter="Tooling">Tooling</button>
+        <button class="tab-pill" data-filter="Social">Social</button>
+      </div>
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input type="text" id="searchInput" placeholder="Search ideas...">
+      </div>
+    </div>
+
+    <div class="card-list" id="ideasList"></div>
+    <div class="empty-state" id="emptyState" style="display:none;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <p>No ideas match your search. Try a different keyword or filter.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MODAL: NEW IDEA ================= -->
+<div class="modal-overlay" id="ideaModal">
+  <div class="modal-panel">
+    <div class="modal-head">
+      <h3>Share an Idea</h3>
+      <button class="modal-close" id="closeIdeaModal">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <form id="ideaForm">
+      <div class="form-field">
+        <label for="ideaTitle">Title</label>
+        <input type="text" id="ideaTitle" placeholder="e.g. On-chain reputation badges for builders" required>
+      </div>
+      <div class="form-field">
+        <label for="ideaDesc">Description</label>
+        <textarea id="ideaDesc" placeholder="Explain the idea, who it's for, and why it matters..." required></textarea>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <label for="ideaCategory">Category</label>
+          <select id="ideaCategory">
+            <option value="DeFi">DeFi</option>
+            <option value="GameFi">GameFi</option>
+            <option value="Tooling">Tooling</option>
+            <option value="Social">Social</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="ideaAuthor">Your name</label>
+          <input type="text" id="ideaAuthor" placeholder="Anonymous Builder">
+        </div>
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn btn-outline-lg" id="cancelIdeaBtn">Cancel</button>
+        <button type="submit" class="btn btn-primary-lg">Post Idea</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="toast" id="toast">Idea posted!</div>
+
+<footer>
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="index.html">
+        <svg class="logo-mark" viewBox="0 0 32 32" fill="none">
+          <path d="M16 2L29 9.5V22.5L16 30L3 22.5V9.5L16 2Z" fill="#fff"/>
+          <path d="M16 2L29 9.5L16 17L3 9.5L16 2Z" fill="#9fb0ff"/>
+        </svg>
+        BaseWorker
+      </a>
+      <p>The community hub for ideas, bounties, and projects on Base.</p>
+      <div class="footer-socials">
+        <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7 8 8 12h-6.3l-5-7.3L6 22H3l7.5-8.6L3 2h6.4l4.5 6.6L18.9 2z"/></svg></a>
+        <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 6.5a9 9 0 01-2.6.8 4.5 4.5 0 002-2.5 9 9 0 01-2.9 1.1A4.5 4.5 0 0010 9v1A10.7 10.7 0 013 7.5s-3.5 7.5 4.5 10.5a11 11 0 01-6 1.5C9.5 23 17 19 17 10.5v-.7A6.4 6.4 0 0020 6.5z"/></svg></a>
+        <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Platform</h5>
+      <ul>
+        <li><a href="ideas.html">Ideas</a></li>
+        <li><a href="bounties.html">Bounties</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="index.html">Explore</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Resources</h5>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="how-it-works.html">How It Works</a></li>
+        <li><a href="how-it-works.html">Guidelines</a></li>
+        <li><a href="how-it-works.html">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Community</h5>
+      <ul>
+        <li><a href="#">Farcaster</a></li>
+        <li><a href="#">X (Twitter)</a></li>
+        <li><a href="#">Discord</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Legal</h5>
+      <ul>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="footer-sub">
+      <h5>Stay updated</h5>
+      <p>Get the latest updates and opportunities delivered to your inbox.</p>
+      <div class="sub-form">
+        <input type="email" placeholder="Enter your email" />
+        <button>Subscribe</button>
+      </div>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>© 2025 BaseWorker. All rights reserved.</span>
+    <span class="built">Built on
+      <span class="base-dot"><svg viewBox="0 0 24 24" fill="none"><path d="M7 12c0-3 2-5 5-5s5 2 5 5-2 5-5 5-5-2-5-5z" fill="white"/></svg></span>
+      BASE
+    </span>
+  </div>
+</footer>
+
+<script>
+const STORAGE_KEY = 'bw_ideas';
+
+const seedIdeas = [
+  {id:'seed1', title:'On-chain reputation badges for builders', desc:'A non-transferable badge system that tracks contributions across BaseWorker projects, so reputation follows the builder, not the platform.', category:'Tooling', author:'lina.base', votes:128, comments:24, time:'2d ago'},
+  {id:'seed2', title:'Quest-based onboarding for new Base wallets', desc:'Gamify the first 10 on-chain actions a new wallet takes — bridging, swapping, minting — with a simple quest tracker and small rewards.', category:'GameFi', author:'0xKarl', votes:96, comments:18, time:'3d ago'},
+  {id:'seed3', title:'Lending pool specifically for builder payroll', desc:'A DeFi primitive where DAOs can stream stablecoin payroll to contributors, with automatic vesting and slashing for missed milestones.', category:'DeFi', author:'ren_finance', votes:84, comments:31, time:'4d ago'},
+  {id:'seed4', title:'Shared changelog feed across all Base apps', desc:'A social feed where any Base project can push a changelog entry, so the community sees what is shipping in one place — like a public build log.', category:'Social', author:'devyn.eth', votes:71, comments:12, time:'5d ago'},
+  {id:'seed5', title:'Bounty escrow with milestone splits', desc:'Instead of all-or-nothing bounty payouts, let posters define milestones so contributors get paid incrementally as they deliver.', category:'Tooling', author:'maya_codes', votes:63, comments:9, time:'6d ago'},
+  {id:'seed6', title:'Idle game where yield farming is the gameplay loop', desc:'A GameFi idle game where your real DeFi positions feed in-game resource generation — actual yield literally grows your base.', category:'GameFi', author:'pixel.base', votes:57, comments:15, time:'1w ago'},
+];
+
+function loadIdeas(){
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if(!raw){
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(seedIdeas));
+    return seedIdeas.slice();
+  }
+  try{ return JSON.parse(raw); }catch(e){ return seedIdeas.slice(); }
+}
+function saveIdeas(ideas){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(ideas));
+}
+function votedSet(){
+  try{ return new Set(JSON.parse(localStorage.getItem('bw_idea_votes')||'[]')); }catch(e){ return new Set(); }
+}
+function saveVoted(set){
+  localStorage.setItem('bw_idea_votes', JSON.stringify(Array.from(set)));
+}
+
+const catColor = {DeFi:'pill-green', GameFi:'pill-purple', Tooling:'pill-blue', Social:'pill-amber'};
+
+let ideas = loadIdeas();
+let currentFilter = 'all';
+let currentSearch = '';
+
+function render(){
+  const listEl = document.getElementById('ideasList');
+  const emptyEl = document.getElementById('emptyState');
+  const voted = votedSet();
+
+  let filtered = ideas.filter(i => currentFilter === 'all' || i.category === currentFilter);
+  if(currentSearch.trim()){
+    const q = currentSearch.trim().toLowerCase();
+    filtered = filtered.filter(i => i.title.toLowerCase().includes(q) || i.desc.toLowerCase().includes(q));
+  }
+  filtered = filtered.slice().sort((a,b) => b.votes - a.votes);
+
+  listEl.innerHTML = '';
+  if(filtered.length === 0){
+    emptyEl.style.display = 'block';
+  } else {
+    emptyEl.style.display = 'none';
+    filtered.forEach(idea => {
+      const isVoted = voted.has(idea.id);
+      const card = document.createElement('div');
+      card.className = 'item-card';
+      card.innerHTML = `
+        <div class="item-vote ${isVoted ? 'voted':''}" data-id="${idea.id}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5l7 9H5l7-9z"/></svg>
+          <span class="count">${idea.votes}</span>
+        </div>
+        <div class="item-main">
+          <div class="item-top">
+            <span class="pill ${catColor[idea.category]||'pill-gray'}">${idea.category}</span>
+          </div>
+          <h3 class="item-title">${escapeHtml(idea.title)}</h3>
+          <p class="item-desc">${escapeHtml(idea.desc)}</p>
+          <div class="item-meta">
+            <span>${escapeHtml(idea.author)}</span>
+            <span>·</span>
+            <span>${idea.time}</span>
+            <span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.5 8.5 0 01-12.4 7.5L3 20l1.1-5.6A8.5 8.5 0 1121 11.5z"/></svg>
+              ${idea.comments} comments
+            </span>
+          </div>
+        </div>`;
+      listEl.appendChild(card);
+    });
+  }
+
+  document.getElementById('statTotal').textContent = ideas.length.toLocaleString() + '+';
+  document.getElementById('statVotes').textContent = ideas.reduce((s,i)=>s+i.votes,0).toLocaleString();
+  document.getElementById('statComments').textContent = ideas.reduce((s,i)=>s+i.comments,0).toLocaleString();
+
+  listEl.querySelectorAll('.item-vote').forEach(el => {
+    el.addEventListener('click', () => toggleVote(el.dataset.id));
+  });
+}
+
+function escapeHtml(str){
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+function toggleVote(id){
+  const voted = votedSet();
+  const idea = ideas.find(i => i.id === id);
+  if(!idea) return;
+  if(voted.has(id)){
+    voted.delete(id);
+    idea.votes -= 1;
+  } else {
+    voted.add(id);
+    idea.votes += 1;
+  }
+  saveVoted(voted);
+  saveIdeas(ideas);
+  render();
+}
+
+document.getElementById('filterTabs').addEventListener('click', (e) => {
+  const btn = e.target.closest('.tab-pill');
+  if(!btn) return;
+  document.querySelectorAll('#filterTabs .tab-pill').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentFilter = btn.dataset.filter;
+  render();
+});
+
+document.getElementById('searchInput').addEventListener('input', (e) => {
+  currentSearch = e.target.value;
+  render();
+});
+
+const ideaModal = document.getElementById('ideaModal');
+document.getElementById('openIdeaModal').addEventListener('click', () => ideaModal.classList.add('open'));
+document.getElementById('closeIdeaModal').addEventListener('click', () => ideaModal.classList.remove('open'));
+document.getElementById('cancelIdeaBtn').addEventListener('click', () => ideaModal.classList.remove('open'));
+ideaModal.addEventListener('click', (e) => { if(e.target === ideaModal) ideaModal.classList.remove('open'); });
+
+document.getElementById('ideaForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const title = document.getElementById('ideaTitle').value.trim();
+  const desc = document.getElementById('ideaDesc').value.trim();
+  const category = document.getElementById('ideaCategory').value;
+  const author = document.getElementById('ideaAuthor').value.trim() || 'Anonymous Builder';
+  if(!title || !desc) return;
+
+  const newIdea = {
+    id: 'idea_' + Date.now(),
+    title, desc, category, author,
+    votes: 1, comments: 0, time: 'Just now'
+  };
+  ideas.unshift(newIdea);
+  saveIdeas(ideas);
+  const voted = votedSet();
+  voted.add(newIdea.id);
+  saveVoted(voted);
+
+  document.getElementById('ideaForm').reset();
+  ideaModal.classList.remove('open');
+  showToast('Idea posted!');
+  currentFilter = 'all';
+  document.querySelectorAll('#filterTabs .tab-pill').forEach(b => b.classList.remove('active'));
+  document.querySelector('#filterTabs .tab-pill[data-filter="all"]').classList.add('active');
+  render();
+});
+
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+render();
+</script>
+</body>
+</html>

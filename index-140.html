@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BaseWorker — Build Together on Base</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="site">
+  <div class="wrap nav">
+    <div class="nav-left">
+      <a class="brand" href="index.html">
+        <svg class="logo-mark" viewBox="0 0 32 32" fill="none">
+          <path d="M16 2L29 9.5V22.5L16 30L3 22.5V9.5L16 2Z" fill="#3b5bfd"/>
+          <path d="M16 2L29 9.5L16 17L3 9.5L16 2Z" fill="#6e87ff"/>
+        </svg>
+        BaseWorker
+      </a>
+      <ul class="nav-links">
+        <li><a href="ideas.html">Ideas</a></li>
+        <li><a href="bounties.html">Bounties</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="how-it-works.html">How It Works</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+    <div class="nav-right">
+      <span class="icon-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+      </span>
+      <a class="btn btn-outline" href="#">Log in</a>
+      <a class="btn btn-primary" href="#">Sign up</a>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <h1>Build<br>Together on<br><span class="accent">Base</span></h1>
+      <p>The community hub for ideas, builders, bounties, and projects on Base.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary-lg" href="ideas.html">Get Started
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn btn-outline-lg" href="projects.html">Explore
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <div class="built-for">
+        <span>Built for the Base community</span>
+        <span class="divider">·</span>
+        <span class="base-pill">
+          <span class="dot"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" fill="white" fill-opacity="0"/><path d="M7 12c0-3 2-5 5-5s5 2 5 5-2 5-5 5-5-2-5-5z" fill="white"/></svg></span>
+          BASE
+        </span>
+      </div>
+    </div>
+
+    <div class="hero-art">
+      <div class="art-card card-share">
+        <div class="card-top">
+          <span class="card-icon icon-blue">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 18h6v1.5a1 1 0 01-1 1h-4a1 1 0 01-1-1V18zM10 21h4v.5a1 1 0 01-1 1h-2a1 1 0 01-1-1V21z"/><path d="M12 2a7 7 0 00-4 12.7c.5.4.8 1 .8 1.6v.2h6.4v-.2c0-.6.3-1.2.8-1.6A7 7 0 0012 2z"/></svg>
+          </span>
+          <h4>Share Ideas</h4>
+        </div>
+        <p>Post your concept and get feedback.</p>
+      </div>
+
+      <div class="art-card card-promote">
+        <div class="card-top">
+          <span class="card-icon icon-purple">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3l7 7-9 9-4-4 6-12z"/><path d="M5 21l3-3"/></svg>
+          </span>
+          <h4>Promote Projects</h4>
+        </div>
+        <p>Showcase what you're building.</p>
+      </div>
+
+      <div class="art-card card-bounty">
+        <div class="card-top">
+          <span class="card-icon icon-green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9 9.5c0-1.4 1.3-2.5 3-2.5s3 1 3 2.3-1.3 1.9-3 2.2-3 .9-3 2.2 1.3 2.3 3 2.3 3-1.1 3-2.5"/></svg>
+          </span>
+          <h4>Post Bounties</h4>
+        </div>
+        <p>Find people and reward great work.</p>
+      </div>
+
+      <div class="art-center">
+        <svg viewBox="0 0 200 200" width="100%" height="100%">
+          <polygon points="100,20 170,60 170,140 100,180 30,140 30,60" fill="#3b5bfd"/>
+          <polygon points="100,20 170,60 100,100 30,60" fill="#6e87ff"/>
+          <circle cx="100" cy="80" r="22" fill="#fff" fill-opacity="0.9"/>
+        </svg>
+      </div>
+
+      <svg class="figure fig-left" viewBox="0 0 100 160" fill="none">
+        <circle cx="40" cy="20" r="14" fill="#2b3a55"/>
+        <rect x="20" y="38" width="40" height="60" rx="10" fill="#3b5bfd"/>
+        <rect x="10" y="95" width="22" height="55" rx="8" fill="#1f2c44"/>
+        <rect x="48" y="95" width="22" height="55" rx="8" fill="#1f2c44"/>
+        <rect x="58" y="42" width="26" height="34" rx="4" fill="#dfe3ee"/>
+      </svg>
+
+      <svg class="figure fig-right" viewBox="0 0 100 170" fill="none">
+        <circle cx="50" cy="18" r="13" fill="#2b3a55"/>
+        <rect x="32" y="34" width="36" height="58" rx="10" fill="#7c5cf0"/>
+        <rect x="22" y="88" width="20" height="60" rx="8" fill="#1f2c44"/>
+        <rect x="56" y="88" width="20" height="60" rx="8" fill="#1f2c44"/>
+        <rect x="68" y="50" width="6" height="36" fill="#16b364"/>
+        <rect x="78" y="40" width="6" height="46" fill="#16b364"/>
+        <rect x="88" y="58" width="6" height="28" fill="#16b364"/>
+      </svg>
+
+      <svg class="cube cube1" viewBox="0 0 40 40"><polygon points="20,2 38,12 38,28 20,38 2,28 2,12" fill="#b9c4ff"/></svg>
+      <svg class="cube cube2" viewBox="0 0 40 40"><polygon points="20,2 38,12 38,28 20,38 2,28 2,12" fill="#b9c4ff"/></svg>
+      <svg class="cube cube3" viewBox="0 0 40 40"><polygon points="20,2 38,12 38,28 20,38 2,28 2,12" fill="#b9c4ff"/></svg>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FEATURE STRIP ================= -->
+<section class="strip">
+  <div class="wrap strip-grid">
+    <div class="strip-card ideas">
+      <span class="strip-icon icon-blue">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 18h6v1.5a1 1 0 01-1 1h-4a1 1 0 01-1-1V18zM10 21h4v.5a1 1 0 01-1 1h-2a1 1 0 01-1-1V21z"/><path d="M12 2a7 7 0 00-4 12.7c.5.4.8 1 .8 1.6v.2h6.4v-.2c0-.6.3-1.2.8-1.6A7 7 0 0012 2z"/></svg>
+      </span>
+      <h3>Ideas</h3>
+      <p>Share your ideas and get feedback from the community.</p>
+      <a class="learn-more" href="ideas.html">Learn more
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+
+    <div class="strip-card bounties">
+      <span class="strip-icon icon-green">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9 9.5c0-1.4 1.3-2.5 3-2.5s3 1 3 2.3-1.3 1.9-3 2.2-3 .9-3 2.2 1.3 2.3 3 2.3 3-1.1 3-2.5"/></svg>
+      </span>
+      <h3>Bounties</h3>
+      <p>Post tasks, set rewards, and find the right people.</p>
+      <a class="learn-more" href="bounties.html">Learn more
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+
+    <div class="strip-card projects">
+      <span class="strip-icon icon-purple">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3l7 7-9 9-4-4 6-12z"/><path d="M5 21l3-3"/></svg>
+      </span>
+      <h3>Projects</h3>
+      <p>Promote your project, update progress, and attract supporters.</p>
+      <a class="learn-more" href="projects.html">Learn more
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY BUILDERS LOVE ================= -->
+<section class="why">
+  <div class="wrap">
+    <h2>Why Builders Love BaseWorker</h2>
+    <div class="why-grid">
+      <div class="why-item">
+        <span class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.3 2.9-6 6.5-6s6.5 2.7 6.5 6"/><circle cx="17" cy="9" r="3"/><path d="M21.5 19.5c0-2.6-2-4.8-4.6-5.4"/></svg>
+        </span>
+        <h4>Find Builders</h4>
+        <p>Connect with talented developers, designers, and creators.</p>
+      </div>
+      <div class="why-item">
+        <span class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        </span>
+        <h4>Discover Ideas</h4>
+        <p>Explore unique ideas and collaborate on the next big thing.</p>
+      </div>
+      <div class="why-item">
+        <span class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3l7 7-9 9-4-4 6-12z"/><path d="M5 21l3-3"/></svg>
+        </span>
+        <h4>Launch Faster</h4>
+        <p>Get the support, feedback, and resources to build and ship.</p>
+      </div>
+      <div class="why-item">
+        <span class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg>
+        </span>
+        <h4>Build in Public</h4>
+        <p>Share your journey and grow together with the Base community.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOW IT WORKS ================= -->
+<section class="how">
+  <div class="wrap">
+    <h2>How It Works</h2>
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="step-num">1</div>
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2v-5"/><path d="M18.5 2.5a2.1 2.1 0 113 3L13 14l-4 1 1-4 8.5-8.5z"/></svg>
+        </div>
+        <h4>Post</h4>
+        <p>Share your idea, post a bounty, or add your project in minutes.</p>
+      </div>
+      <div class="how-step">
+        <div class="step-num">2</div>
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.3 2.9-6 6.5-6s6.5 2.7 6.5 6"/><circle cx="17" cy="9" r="3"/><path d="M21.5 19.5c0-2.6-2-4.8-4.6-5.4"/></svg>
+        </div>
+        <h4>Connect</h4>
+        <p>Builders and supporters discover your post and reach out.</p>
+      </div>
+      <div class="how-step">
+        <div class="step-num">3</div>
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.4-9.5-9A5.5 5.5 0 0112 6.5 5.5 5.5 0 0121.5 12c-2.5 4.6-9.5 9-9.5 9z"/><path d="M8 11l2 2 6-6"/></svg>
+        </div>
+        <h4>Collaborate</h4>
+        <p>Work together, build, and bring your ideas to life.</p>
+      </div>
+      <div class="how-step">
+        <div class="step-num">4</div>
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3l7 7-9 9-4-4 6-12z"/><path d="M5 21l3-3"/></svg>
+        </div>
+        <h4>Launch</h4>
+        <p>Launch your project and share it with the world.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATS BAND ================= -->
+<div class="wrap">
+  <div class="stats">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <span class="stat-icon icon-blue">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 18h6v1.5a1 1 0 01-1 1h-4a1 1 0 01-1-1V18z"/><path d="M12 2a7 7 0 00-4 12.7c.5.4.8 1 .8 1.6v.2h6.4v-.2c0-.6.3-1.2.8-1.6A7 7 0 0012 2z"/></svg>
+        </span>
+        <div>
+          <div class="stat-num">2,300+</div>
+          <div class="stat-label">Ideas Shared</div>
+        </div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-icon icon-green">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9 9.5c0-1.4 1.3-2.5 3-2.5s3 1 3 2.3-1.3 1.9-3 2.2-3 .9-3 2.2 1.3 2.3 3 2.3 3-1.1 3-2.5"/></svg>
+        </span>
+        <div>
+          <div class="stat-num">500+</div>
+          <div class="stat-label">Bounties Posted</div>
+        </div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-icon icon-purple">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3l7 7-9 9-4-4 6-12z"/><path d="M5 21l3-3"/></svg>
+        </span>
+        <div>
+          <div class="stat-num">300+</div>
+          <div class="stat-label">Projects Listed</div>
+        </div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-icon icon-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 10-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z"/></svg>
+        </span>
+        <div>
+          <div class="stat-num">12,000+</div>
+          <div class="stat-label">Tips Sent</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= BUILDERS BUILDING ON BASE ================= -->
+<section class="builders">
+  <div class="wrap">
+    <h2>Builders Building on Base</h2>
+    <p>A community of creators shipping incredible projects.</p>
+    <div class="builders-grid">
+      <div class="proj-card">
+        <span class="proj-logo" style="background:#0b1326;">B</span>
+        <h5>BaseWorker</h5>
+        <span class="badge building">Building</span>
+      </div>
+      <div class="proj-card">
+        <span class="proj-logo" style="background:#3b5bfd;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>
+        </span>
+        <h5>BuilderQuest</h5>
+        <span class="badge building">Beta</span>
+      </div>
+      <div class="proj-card">
+        <span class="proj-logo" style="background:#0b1326;color:#16b364;">$</span>
+        <h5>OnChainPad</h5>
+        <span class="badge live">Live</span>
+      </div>
+      <div class="proj-card">
+        <span class="proj-logo" style="background:#3b5bfd;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" fill="#fff"/></svg>
+        </span>
+        <h5>BaseNames</h5>
+        <span class="badge live">Live</span>
+      </div>
+      <div class="proj-card">
+        <span class="proj-logo" style="background:#0b1326;">b</span>
+        <h5>Bankr</h5>
+        <span class="badge building">Building</span>
+      </div>
+      <a class="proj-card view-all" href="projects.html">
+        <span class="ring">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 10-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z"/></svg>
+        </span>
+        View all projects →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA BANNER ================= -->
+<div class="wrap">
+  <div class="cta-banner">
+    <div class="cta-left">
+      <h3>Ready to build something amazing?</h3>
+      <p>Join builders, creators, and innovators on Base.</p>
+    </div>
+    <div class="cta-mid">
+      <a class="btn btn-primary-lg" href="ideas.html">Get Started</a>
+      <a class="btn btn-outline-lg" href="projects.html">Explore Projects</a>
+    </div>
+    <div class="cta-deco">
+      <svg width="120" height="100" viewBox="0 0 120 100">
+        <polygon points="60,10 100,30 100,60 60,80 20,60 20,30" fill="#3b5bfd" opacity="0.9"/>
+        <polygon points="35,35 70,50 70,75 35,90 5,75 5,50" fill="#b9c4ff" opacity="0.6"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="index.html">
+        <svg class="logo-mark" viewBox="0 0 32 32" fill="none">
+          <path d="M16 2L29 9.5V22.5L16 30L3 22.5V9.5L16 2Z" fill="#fff"/>
+          <path d="M16 2L29 9.5L16 17L3 9.5L16 2Z" fill="#9fb0ff"/>
+        </svg>
+        BaseWorker
+      </a>
+      <p>The community hub for ideas, bounties, and projects on Base.</p>
+      <div class="footer-socials">
+        <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7 8 8 12h-6.3l-5-7.3L6 22H3l7.5-8.6L3 2h6.4l4.5 6.6L18.9 2z"/></svg></a>
+        <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 6.5a9 9 0 01-2.6.8 4.5 4.5 0 002-2.5 9 9 0 01-2.9 1.1A4.5 4.5 0 0010 9v1A10.7 10.7 0 013 7.5s-3.5 7.5 4.5 10.5a11 11 0 01-6 1.5C9.5 23 17 19 17 10.5v-.7A6.4 6.4 0 0020 6.5z"/></svg></a>
+        <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg></a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h5>Platform</h5>
+      <ul>
+        <li><a href="ideas.html">Ideas</a></li>
+        <li><a href="bounties.html">Bounties</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="index.html">Explore</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h5>Resources</h5>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="how-it-works.html">How It Works</a></li>
+        <li><a href="how-it-works.html">Guidelines</a></li>
+        <li><a href="how-it-works.html">FAQ</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h5>Community</h5>
+      <ul>
+        <li><a href="#">Farcaster</a></li>
+        <li><a href="#">X (Twitter)</a></li>
+        <li><a href="#">Discord</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h5>Legal</h5>
+      <ul>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-sub">
+      <h5>Stay updated</h5>
+      <p>Get the latest updates and opportunities delivered to your inbox.</p>
+      <div class="sub-form">
+        <input type="email" placeholder="Enter your email" />
+        <button>Subscribe</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap footer-bottom">
+    <span>© 2025 BaseWorker. All rights reserved.</span>
+    <span class="built">Built on
+      <span class="base-dot"><svg viewBox="0 0 24 24" fill="none"><path d="M7 12c0-3 2-5 5-5s5 2 5 5-2 5-5 5-5-2-5-5z" fill="white"/></svg></span>
+      BASE
+    </span>
+  </div>
+</footer>
+
+</body>
+</html>
